@@ -38,6 +38,7 @@ public class Main {
                 }
             }
         }
+        System.out.println(TaskService.taskList);
         }
 
     private static void inputTask(Scanner scanner) {
@@ -53,13 +54,9 @@ public class Main {
                 switch (menu2) {
                     case 1:
                         Task.Type type = Task.Type.PERSONAL;
-                        String typeS = type.toString();
-                        typeS = scanner.next();
                         break;
                     case 2:
                         Task.Type type2 = Task.Type.WORK;
-                        String type2S = type2.toString();
-                        type2S = scanner.next();
                         break;
                 }
         } else {
@@ -73,29 +70,19 @@ public class Main {
             int menu3 = scanner.nextInt();
             switch (menu3) {
                 case 1:
-                    RepeatabilityType type = RepeatabilityType.ONETIME;
-                    String typeS = type.toString();
-                    typeS = scanner.next ();
+                    RepeatabilityType typeR = RepeatabilityType.ONETIME;
                     break;
                 case 2:
-                    RepeatabilityType type2 = RepeatabilityType.DAILY;
-                    String type2S = type2.toString();
-                    type2S = scanner.next ();
+                    RepeatabilityType typeR2 = RepeatabilityType.DAILY;
                     break;
                 case 3:
-                    RepeatabilityType type3 = RepeatabilityType.WEEKLY;
-                    String type3S = type3.toString();
-                    type3S = scanner.next ();
+                    RepeatabilityType typeR3 = RepeatabilityType.WEEKLY;
                     break;
                 case 4:
-                    RepeatabilityType type4 = RepeatabilityType.MONTHLY;
-                    String type4S = type4.toString();
-                    type4S = scanner.next ();
+                    RepeatabilityType typeR4 = RepeatabilityType.MONTHLY;
                     break;
                 case 5:
-                    RepeatabilityType type5 = RepeatabilityType.ANNUAL;
-                    String type5S = type5.toString();
-                    type5S = scanner.next ();
+                    RepeatabilityType typeR5 = RepeatabilityType.ANNUAL;
                     break;
             }
         } else {
