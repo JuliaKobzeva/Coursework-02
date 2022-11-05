@@ -8,4 +8,9 @@ public class Weekly extends Repeatability{
         }
         return date;
     }
+
+    @Override
+    public String toString() {
+        return "Weekly";
+    }
 }

@@ -6,4 +6,8 @@ public class OneTime extends Repeatability{
         return date;
     }
 
+    @Override
+    public String toString() {
+        return "OneTime";
+    }
 }

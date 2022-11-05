@@ -8,4 +8,9 @@ public class Daily extends Repeatability{
         }
         return date;
     }
+
+    @Override
+    public String toString() {
+        return "Daily";
+    }
 }

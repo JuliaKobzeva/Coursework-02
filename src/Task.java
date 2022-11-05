@@ -1,10 +1,12 @@
 import java.time.LocalDateTime;
 
 public class Task {
-    private Integer id;
+    private Integer id = 0;
     private String headline;
     private String description;
     public enum Type{PERSONAL, WORK}
+
+    private Type type;
     private LocalDateTime date;
 
     private Repeatability repeatability;
@@ -13,6 +15,9 @@ public class Task {
         this.headline = headline;
         this.description = description;
         this.date = LocalDateTime.now();
+        this.type = type;
+
+        id++;
 
         switch (type2) {
             case ONETIME:
@@ -31,14 +36,18 @@ public class Task {
                 this.repeatability = new Annual();
                 break;
         }
-        id++;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
     public LocalDateTime getDate() {
         return date;
+    }
+
+    @Override
+    public String toString() {
+        return headline + " " + description + " " + date + " " + type + " " + repeatability;
     }
 }

@@ -8,4 +8,9 @@ public class Annual extends Repeatability{
         }
         return date;
     }
+
+    @Override
+    public String toString() {
+        return "Annual";
+    }
 }

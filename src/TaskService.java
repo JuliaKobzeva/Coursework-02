@@ -7,16 +7,26 @@ import java.util.Map;
 public class TaskService {
     public static Map<Integer, Task>taskList = new HashMap<>();
 
-    public void addTask(Integer integer, Task task){
+    public static void addTask(Integer integer, Task task){
         taskList.put(integer,task);
     }
 
-    public void removeTask(Integer integer, Task task){
-        taskList.remove(integer,task);
+    public static void removeTask(Integer integer){
+        taskList.remove(integer);
     }
 
-    public List showTasks(LocalDateTime date){
+    public static List showTasks(LocalDateTime date){
         List<Task>list = new ArrayList<>();
-        return list;
+        list.addAll(taskList.values());
+
+        List<Task>list2 = new ArrayList<>();
+
+        for (int i = 0; i < list.size(); i++) {
+            list.get(i);
+            if(date == list.get(i).getDate()){
+                list2.add(list.get(i));
+            }
+        }
+        return list2;
     }
 }

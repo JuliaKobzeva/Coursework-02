@@ -8,4 +8,9 @@ public class Monthly extends Repeatability{
         }
         return date;
     }
+
+    @Override
+    public String toString() {
+        return "Monthly";
+    }
 }
