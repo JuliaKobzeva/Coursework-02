@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
@@ -46,17 +47,22 @@ public class Main {
         String taskName = scanner.next ();
         System.out.print("Put the description / Введите описание задачи: ");
         String taskDescription = scanner.next ();
+        System.out.print("Put the date (01.01.2022) / Введите дату (формат 01.01.2022): ");
+        String date = scanner.next();
+        LocalDate taskDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd.MM.yyyy"));
         printMenu2();
         System.out.print("Choose one point in the menu / Выберите пункт меню: ");
 
+
+        Task.Type type = Task.Type.PERSONAL;
         if (scanner.hasNextInt()) {
-        int menu2 = scanner.nextInt();
+            int menu2 = scanner.nextInt();
                 switch (menu2) {
                     case 1:
-                        Task.Type type = Task.Type.PERSONAL;
+                        type = Task.Type.PERSONAL;
                         break;
                     case 2:
-                        Task.Type type2 = Task.Type.WORK;
+                        type = Task.Type.WORK;
                         break;
                 }
         } else {
@@ -66,29 +72,35 @@ public class Main {
 
         printMenu3();
         System.out.print("Choose one point in the menu / Выберите пункт меню: ");
+
+        RepeatabilityType typeR = RepeatabilityType.ONETIME;
         if (scanner.hasNextInt()) {
             int menu3 = scanner.nextInt();
             switch (menu3) {
                 case 1:
-                    RepeatabilityType typeR = RepeatabilityType.ONETIME;
+                    typeR = RepeatabilityType.ONETIME;
                     break;
                 case 2:
-                    RepeatabilityType typeR2 = RepeatabilityType.DAILY;
+                    typeR = RepeatabilityType.DAILY;
                     break;
                 case 3:
-                    RepeatabilityType typeR3 = RepeatabilityType.WEEKLY;
+                    typeR = RepeatabilityType.WEEKLY;
                     break;
                 case 4:
-                    RepeatabilityType typeR4 = RepeatabilityType.MONTHLY;
+                    typeR = RepeatabilityType.MONTHLY;
                     break;
                 case 5:
-                    RepeatabilityType typeR5 = RepeatabilityType.ANNUAL;
+                    typeR = RepeatabilityType.ANNUAL;
                     break;
             }
         } else {
             scanner.next();
             System.out.println("Choose one point in the menu / Выберите пункт меню из списка!");
         }
+
+        Task task = new Task(taskName,taskDescription, taskDate, type,typeR);
+
+        TaskService.addTask(task.getId(),task);
     }
 
     private static void removeTask(Scanner scanner) {
@@ -98,11 +110,11 @@ public class Main {
     }
 
     private static void showTasks(Scanner scanner) {
-        System.out.print("Put the date (01 01 2022) / Введите дату(формат 01 01 2022): ");
+        System.out.print("Put the date (01.01.2022) / Введите дату(формат 01.01.2022): ");
         String date = scanner.next();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MM yyyy", Locale.ROOT);
-        LocalDateTime parsedDate = LocalDateTime.parse(date, formatter);
-        TaskService.showTasks(parsedDate);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        LocalDate parsedDate = LocalDate.parse(date, formatter);
+        System.out.println(TaskService.showTasks(parsedDate));
     }
 
     private static void printMenu() {

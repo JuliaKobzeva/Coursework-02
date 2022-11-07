@@ -1,8 +1,9 @@
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Daily extends Repeatability{
-    public LocalDateTime repeat(Integer integer, Task task){
-        LocalDateTime date = task.getDate();
+    public LocalDate repeat(Integer integer, Task task){
+        LocalDate date = task.getDate();
         while(TaskService.taskList.containsKey(integer) ){
             date = task.getDate().plusDays(1);
         }

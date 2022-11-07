@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Task {
@@ -7,14 +8,29 @@ public class Task {
     public enum Type{PERSONAL, WORK}
 
     private Type type;
-    private LocalDateTime date;
+    private LocalDate date;
 
     private Repeatability repeatability;
 
-    public Task(String headline, String description,  Type type, RepeatabilityType type2) {
-        this.headline = headline;
-        this.description = description;
-        this.date = LocalDateTime.now();
+    public Task(String headline, String description,  LocalDate date, Type type, RepeatabilityType type2) {
+        if(headline == null || headline.isBlank() || headline.isEmpty()){
+            this.headline = "Задача";
+        }else{
+            this.headline = headline;
+        }
+
+        if(description == null || description.isBlank() || description.isEmpty()){
+            this.description = "Описание";
+        }else{
+            this.description = description;
+        }
+
+        if(date == null){
+            this.date = LocalDate.now();
+        }else{
+            this.date = date;
+        }
+
         this.type = type;
 
         id++;
@@ -42,7 +58,7 @@ public class Task {
         return id;
     }
 
-    public LocalDateTime getDate() {
+    public LocalDate getDate() {
         return date;
     }
 

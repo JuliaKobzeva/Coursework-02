@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,7 +16,7 @@ public class TaskService {
         taskList.remove(integer);
     }
 
-    public static List showTasks(LocalDateTime date){
+    public static List showTasks(LocalDate date){
         List<Task>list = new ArrayList<>();
         list.addAll(taskList.values());
 
