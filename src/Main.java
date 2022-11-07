@@ -6,12 +6,14 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        //Task one = new Task("первая заметка","описание",Task.Type.WORK, RepeatabilityType.DAILY);
-        //TaskService.addTask(1,one);
-        //System.out.println(one.getId());
-        //System.out.println(one.getDate());
-        //System.out.println(TaskService.taskList);
-       //System.out.println(TaskService.showTasks(one.getDate()));
+//        Task one = new Task("первая заметка","описание",null, Task.Type.WORK, RepeatabilityType.DAILY);
+//        Task two = new Task("вторая заметка","описание",null, Task.Type.WORK, RepeatabilityType.DAILY);
+//        TaskService.addTask(1,one);
+//        TaskService.addTask(2,two);
+//        System.out.println(one.getId());
+//        System.out.println(one.getDate());
+//        System.out.println(TaskService.taskList);
+//        System.out.println(TaskService.showTasks(one.getDate()));
 
         try (Scanner scanner = new Scanner(System.in)) {
             label:

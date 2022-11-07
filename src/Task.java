@@ -1,5 +1,7 @@
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 public class Task {
     private Integer id = 0;
@@ -12,7 +14,7 @@ public class Task {
 
     private Repeatability repeatability;
 
-    public Task(String headline, String description,  LocalDate date, Type type, RepeatabilityType type2) {
+    public Task(String headline, String description, LocalDate date, Type type, RepeatabilityType type2) {
         if(headline == null || headline.isBlank() || headline.isEmpty()){
             this.headline = "Задача";
         }else{
@@ -65,5 +67,18 @@ public class Task {
     @Override
     public String toString() {
         return headline + " " + description + " " + date + " " + type + " " + repeatability;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Task task = (Task) o;
+        return Objects.equals(id, task.id) && Objects.equals(headline, task.headline) && Objects.equals(description, task.description) && type == task.type && Objects.equals(date, task.date) && Objects.equals(repeatability, task.repeatability);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, headline, description, type, date, repeatability);
     }
 }
