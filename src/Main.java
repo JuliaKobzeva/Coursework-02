@@ -6,8 +6,8 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-//        Task one = new Task("первая заметка","описание",null, Task.Type.WORK, RepeatabilityType.DAILY);
-//        Task two = new Task("вторая заметка","описание",null, Task.Type.WORK, RepeatabilityType.DAILY);
+//        Task one = new Task("первая заметка","описание",null, Task.Type.WORK);
+//        Task two = new Task("вторая заметка","описание",one.getDate(), Task.Type.WORK);
 //        TaskService.addTask(1,one);
 //        TaskService.addTask(2,two);
 //        System.out.println(one.getId());
@@ -42,7 +42,7 @@ public class Main {
             }
         }
         System.out.println(TaskService.taskList);
-        }
+    }
 
     private static void inputTask(Scanner scanner) {
         System.out.print("Put the name / Введите название задачи: ");
@@ -52,47 +52,19 @@ public class Main {
         System.out.print("Put the date (01.01.2022) / Введите дату (формат 01.01.2022): ");
         String date = scanner.next();
         LocalDate taskDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-        printMenu2();
+        printMenu_TypeOfTask();
         System.out.print("Choose one point in the menu / Выберите пункт меню: ");
 
 
         Task.Type type = Task.Type.PERSONAL;
         if (scanner.hasNextInt()) {
             int menu2 = scanner.nextInt();
-                switch (menu2) {
-                    case 1:
-                        type = Task.Type.PERSONAL;
-                        break;
-                    case 2:
-                        type = Task.Type.WORK;
-                        break;
-                }
-        } else {
-        scanner.next();
-        System.out.println("Choose one point in the menu / Выберите пункт меню из списка!");
-        }
-
-        printMenu3();
-        System.out.print("Choose one point in the menu / Выберите пункт меню: ");
-
-        RepeatabilityType typeR = RepeatabilityType.ONETIME;
-        if (scanner.hasNextInt()) {
-            int menu3 = scanner.nextInt();
-            switch (menu3) {
+            switch (menu2) {
                 case 1:
-                    typeR = RepeatabilityType.ONETIME;
+                    type = Task.Type.PERSONAL;
                     break;
                 case 2:
-                    typeR = RepeatabilityType.DAILY;
-                    break;
-                case 3:
-                    typeR = RepeatabilityType.WEEKLY;
-                    break;
-                case 4:
-                    typeR = RepeatabilityType.MONTHLY;
-                    break;
-                case 5:
-                    typeR = RepeatabilityType.ANNUAL;
+                    type = Task.Type.WORK;
                     break;
             }
         } else {
@@ -100,9 +72,38 @@ public class Main {
             System.out.println("Choose one point in the menu / Выберите пункт меню из списка!");
         }
 
-        Task task = new Task(taskName,taskDescription, taskDate, type,typeR);
+        printMenu_RepeatabilityType();
+        System.out.print("Choose one point in the menu / Выберите пункт меню: ");
 
-        TaskService.addTask(task.getId(),task);
+        if (scanner.hasNextInt()) {
+            int menu3 = scanner.nextInt();
+            switch (menu3) {
+                case 1:
+                    OneTime task1 = new OneTime(taskName,taskDescription, taskDate, type);
+                    TaskService.addTask(task1.getId(),task1);
+                    break;
+                case 2:
+                    Daily task2 = new Daily(taskName,taskDescription, taskDate, type);
+                    TaskService.addTask(task2.getId(),task2);
+                    break;
+                case 3:
+                    Weekly task3 = new Weekly(taskName,taskDescription, taskDate, type);
+                    TaskService.addTask(task3.getId(),task3);
+                    break;
+                case 4:
+                    Monthly task4 = new Monthly(taskName,taskDescription, taskDate, type);
+                    TaskService.addTask(task4.getId(),task4);
+                    break;
+                case 5:
+                    Annual task5 = new Annual(taskName,taskDescription, taskDate, type);
+                    TaskService.addTask(task5.getId(),task5);
+                    break;
+            }
+        } else {
+            scanner.next();
+            System.out.println("Choose one point in the menu / Выберите пункт меню из списка!");
+        }
+
     }
 
     private static void removeTask(Scanner scanner) {
@@ -130,13 +131,13 @@ public class Main {
         );
     }
 
-    private static void printMenu2() {
+    private static void printMenu_TypeOfTask() {
         System.out.println(
                 "1.PERSONAL 2. WORK"
         );
     }
 
-    private static void printMenu3() {
+    private static void printMenu_RepeatabilityType() {
         System.out.println(
                 "1.ONETIME 2. DAILY 3. WEEKLY 4. MONTHLY 5. ANNUAL"
         );

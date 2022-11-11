@@ -1,9 +1,5 @@
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class TaskService {
     public static Map<Integer, Task>taskList = new HashMap<>();
@@ -23,8 +19,7 @@ public class TaskService {
         List<Task>list2 = new ArrayList<>();
 
         for (int i = 0; i < list.size(); i++) {
-            list.get(i);
-            if(date == list.get(i).getDate()){
+            if(date.equals(list.get(i).getDate())){
                 list2.add(list.get(i));
             }
         }

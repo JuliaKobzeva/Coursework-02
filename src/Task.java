@@ -3,18 +3,22 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
-public class Task {
+public class Task implements Repetability{
     private Integer id = 0;
     private String headline;
     private String description;
+
     public enum Type{PERSONAL, WORK}
 
     private Type type;
     private LocalDate date;
 
-    private Repeatability repeatability;
+    @Override
+    public LocalDate repeat(LocalDate inputDate) {
+        return null;
+    }
 
-    public Task(String headline, String description, LocalDate date, Type type, RepeatabilityType type2) {
+    public Task(String headline, String description, LocalDate date, Type type) {
         if(headline == null || headline.isBlank() || headline.isEmpty()){
             this.headline = "Задача";
         }else{
@@ -36,24 +40,6 @@ public class Task {
         this.type = type;
 
         id++;
-
-        switch (type2) {
-            case ONETIME:
-                this.repeatability = new OneTime();
-                break;
-            case DAILY:
-                this.repeatability = new Daily();
-                break;
-            case WEEKLY:
-                this.repeatability = new Weekly();
-                break;
-            case MONTHLY:
-                this.repeatability = new Monthly();
-                break;
-            case ANNUAL:
-                this.repeatability = new Annual();
-                break;
-        }
     }
 
     public Integer getId() {
@@ -66,7 +52,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return headline + " " + description + " " + date + " " + type + " " + repeatability;
+        return headline + " " + description + " " + date + " " + type;
     }
 
     @Override
@@ -74,11 +60,11 @@ public class Task {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Task task = (Task) o;
-        return Objects.equals(id, task.id) && Objects.equals(headline, task.headline) && Objects.equals(description, task.description) && type == task.type && Objects.equals(date, task.date) && Objects.equals(repeatability, task.repeatability);
+        return Objects.equals(id, task.id) && Objects.equals(headline, task.headline) && Objects.equals(description, task.description) && type == task.type && Objects.equals(date, task.date);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, headline, description, type, date, repeatability);
+        return Objects.hash(id, headline, description, type, date);
     }
 }
