@@ -13,9 +13,4 @@ public class Annual extends Task{
         }
         return date;
     }
-
-    @Override
-    public String toString() {
-        return "Annual";
-    }
 }

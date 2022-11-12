@@ -10,9 +10,4 @@ public class OneTime extends Task{
         LocalDate date = getDate();
         return date;
     }
-
-    @Override
-    public String toString() {
-        return "OneTime";
-    }
 }

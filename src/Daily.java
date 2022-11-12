@@ -14,9 +14,4 @@ public class Daily extends Task{
         }
         return date;
     }
-
-    @Override
-    public String toString() {
-        return "Daily";
-    }
 }

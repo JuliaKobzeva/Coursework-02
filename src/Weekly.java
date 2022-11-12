@@ -13,9 +13,4 @@ public class Weekly extends Task{
         }
         return date;
     }
-
-    @Override
-    public String toString() {
-        return "Weekly";
-    }
 }
