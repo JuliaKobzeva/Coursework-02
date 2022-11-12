@@ -12,17 +12,28 @@ public class TaskService {
         taskList.remove(integer);
     }
 
-    public static List showTasks(LocalDate date){
-        List<Task>list = new ArrayList<>();
-        list.addAll(taskList.values());
+//    public static List showTasks(LocalDate date){
+//        List<Task>list = new ArrayList<>();
+//        list.addAll(taskList.values());
+//
+//        List<Task>list2 = new ArrayList<>();
+//
+//        for (int i = 0; i < list.size(); i++) {
+//            if(date.equals(list.get(i).getDate())){
+//                list2.add(list.get(i));
+//            }
+//        }
+//        return list2;
+//    }
 
-        List<Task>list2 = new ArrayList<>();
-
-        for (int i = 0; i < list.size(); i++) {
-            if(date.equals(list.get(i).getDate())){
-                list2.add(list.get(i));
+    public static Collection<Task>showTasks(LocalDate date){
+        List<Task> resultList = new ArrayList<>();
+        for (Map.Entry<Integer,Task> integerTaskEntry : taskList.entrySet()){
+            var task = integerTaskEntry.getValue();
+            if(date.equals(task.getDate())){
+                resultList.add(task);
             }
         }
-        return list2;
+        return resultList;
     }
 }
