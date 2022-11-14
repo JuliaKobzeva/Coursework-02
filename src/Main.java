@@ -7,17 +7,16 @@ public class Main {
         String[] bookNames = {"Три товарища","Два капитана"};
         String[] authorNames = {"Э.М.Ремарк","В.А.Каверин"};
 
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < bookNames.length; i++) {
-            StringBuilder sb = new StringBuilder(bookNames[i]);
-            StringBuilder sb2 = new StringBuilder(authorNames[i]);
-            StringBuilder sb3 = sb.insert(0,"<<");
-            StringBuilder sb4 = sb.append(">> " + sb2 + "а");
-            String book = sb4.toString();
-            System.out.println(book);
+            sb.append("<<");
+            sb.append(bookNames[i]);
+            sb.append(">> ");
+            sb.append(authorNames[i] + "\n");
         }
+        System.out.println(sb.toString());
 
-//        String[] result = Stream.of(bookNames,authorNames).flatMap(Stream::of).toArray(String[]::new);
-//        System.out.println(Arrays.toString(result));
+
 
     }
 }
